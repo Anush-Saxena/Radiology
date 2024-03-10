@@ -1,0 +1,301 @@
+/* -----------------------------NAVBAR-------------------------------------- */
+header {
+    
+    background-color: #043052;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    height: 70px;
+}
+
+.logo {
+    font-size: 1.5em;
+    margin-left: 100px;
+}
+.color1{
+     color: #5b9ca7 ;
+}
+.color2{
+     color:white ;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li{
+  display: inline-block;
+  list-style-type: none;
+  margin: 10px 20px;
+  justify-content: space-between;
+
+}
+nav ul li a{
+  text-decoration: none;
+  color: #fff;
+font-size: 20px;
+position: relative;}
+nav ul li a::after{
+  content :'';
+  width: 0px;
+  height: 3px;
+  background:#fff;
+  position: absolute;
+  left: 0px;
+  bottom: -6px;
+  
+  transition: 0.5s;
+  
+  }
+  nav ul li a:hover::after{
+    width:100%;
+    
+}
+nav ul li a:hover{
+    text-shadow: 2px 3px 8px;
+}
+/* ----------------------------SIGN IN SIGN UP-------------------------------- */
+.body1 {
+    height: 70vh;
+
+}
+.sign{
+    /* position: absolute; */
+    margin-top: 150px;
+    margin-left: 600px;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    /* margin: 0; */
+    padding: 0;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    /* height: 100vh; */
+  }
+
+  .container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+  }
+  .container .sign{
+    height: 800px;
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .input-group {
+    margin-bottom: 20px;
+  }
+
+  .input-group label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .input-group input[type="text"],
+  .input-group input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    
+  }
+
+  .input-group input[type="submit"] {
+    width: 100%;
+    padding: 10px ;
+    border: none;
+    border-radius: 3px;
+    background-color: #043052;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .input-group input[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+
+  .bottom-text {
+    text-align: center;
+  }
+
+  .bottom-text a {
+    color: #007bff;
+  }
+
+  .bottom-text a:hover {
+    text-decoration: underline;
+  }
+
+  /* --------------------------------XRAY------------------------------- */
+  
+  
+ 
+  .header2{
+    background-color: #043052;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    height: 40px;
+
+  }
+   h2{
+    text-align: left;
+    margin-left: 10px;
+    color: #043052;
+  }
+ p{
+  margin-left: 10px;
+    line-height: 1.6;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+ }
+ section {
+
+  margin-bottom: 20px;
+  margin-left: 50px;
+  margin-left: 50px;
+}
+.uses{
+
+  line-height: 1.6;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+}
+  /* footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #115871;
+    color: #fff;
+  } */
+li h2, li p {
+  margin: 0;
+  padding: 0;
+}
+li{
+  margin: 5px;
+}
+li::before{
+  color: #115871;
+}
+
+  /* ----------------------------ABOUT--------------------------------- */
+  
+  .about{
+    margin-top: 60px;
+    font-family: Arial,  sans-serif;
+    height:30px;
+  }
+  .worklist{
+    display: grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr)) ;
+    grid-gap: 0px;
+    margin-top: 50px;
+    margin-left: 60px;
+}
+.work{
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    display: flex;   
+
+
+}
+.img1{
+    overflow: hidden;
+}
+
+.layer{
+    width: 85.5%;
+    height: 0%;
+    background: linear-gradient(rgba(0,0,0,0.6), #022F40);
+    border-radius: 0px;
+    position: absolute;
+    left: 0;
+    bottom:0 ;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 0 5px;
+    font-size: 14px;
+    transition: height 0.5s;
+}
+.layer a{
+
+    margin-top: 20px;
+    color: #ff004f;
+    text-decoration: none;
+    font-size: 199x;
+    line-height: 60px;
+    background: white;
+    width: 60px;
+    height: 60;
+    border-radius: 50%;
+    text-align:center;
+   
+
+    
+}
+.work:hover img{
+    transform: scale(1.2);
+
+}
+.work img{
+    width: 80%;
+    border-radius: 20px;
+    display: block;
+    transition: transform 0.5s;
+    
+}
+.work:hover .layer{
+    height: 100%;
+    overflow: hidden;
+}
+/* Style for the GitHub icon */
+
+.icons a{
+  display: inline-block;
+    color: #333; /* Change the color of the icon */
+    font-size: 24px; /* Adjust the size of the icon */
+    text-decoration: none; /* Remove default underline */
+    border: none;
+    
+  }
+  .icons a:hover{
+    color: #5AB1BB;
+  }
+  
+
+  h3{
+    color: #fff;
+  }
+  .worklist p{
+    color: #f7f6f6;
+  }
+ footer{
+  background-color: #043052;
+  margin-top: 30px;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    height: 10px;
+ } 
+ footer p{
+  margin-left: 565px;
+ }
