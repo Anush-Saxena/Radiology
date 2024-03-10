@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="properweb.css">
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
+    <script src="https://kit.fontawesome.com/c4cc2c27f9.js" crossorigin="anonymous"></script>
+    <title>ProperWeb</title>
+</head>
+<body>
+    <!-- ---------------------------------NAVBAR----------------------------------- -->
+    <header>
+        <div class="logo">
+            <span class="color1">Insight</span><span class="color2">XR</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#team">Team</a></li>
+            </ul>
+        </nav>
+        
+     </header>
+<!-- -------------------------SIGN IN SIGN UP---------------------------- -->
+<div class="body1" id="home">
+  <div class="container sign"    id="signin">
+      <h2>Sign In</h2>
+      <form id="signInForm">
+        <div class="input-group">
+          <label for="email">Email:</label>
+          <input type="text" id="email" name="email" required>
+        </div>
+        <div class="input-group">
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" required>
+        </div>
+        <div class="input-group">
+          <input type="submit" value="Sign In" onclick="redirectToUpload()">
+        </div>
+      </form>
+      <div class="bottom-text">
+        Don't have an account? <a href="#" id="showSignUp">Sign Up</a>
+      </div>
+    </div>
+  
+    <div class="container sign" style="display: none;" id="signUpContainer">
+      <h2>Sign Up</h2>
+      <form id="signUpForm">
+        <div class="input-group">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="input-group">
+          <label for="email">Email:</label>
+          <input type="text" id="email" name="email" required>
+        </div>
+        <div class="input-group">
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" required>
+        </div>
+        <div class="input-group">
+          <input type="submit" value="Sign Up" onclick="redirectToUpload()">
+        </div>
+      </form>
+      <div class="bottom-text">
+        Already have an account? <a href="#" id="showSignIn">Sign In</a>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    document.getElementById('showSignUp').addEventListener('click', function(event) {
+      event.preventDefault();
+      document.getElementById('signUpContainer').style.display = 'block';
+      document.getElementById('signin').style.display = 'none';
+    });
+  
+    document.getElementById('showSignIn').addEventListener('click', function(event) {
+      event.preventDefault();
+      document.getElementById('signUpContainer').style.display = 'none';
+      document.getElementById('signin').style.display = 'block';
+    });
+    const signIn = document.getElementById('signInForm')
+    signIn.addEventListener('submit',async function(event) {
+      event.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+  
+      fetch('http://localhost:80/signIn', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email, password })
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Sign-in failed');
+        }
+        return response.text();
+      })
+      .then(data => {
+        // Handle successful sign-in
+        console.log(data);
+        localStorage.setItem('userToken', data.token); // Assuming the API returns a token
+        window.location.href = 'uploadimage.html';
+      })
+      .catch(error => {
+        console.error('Sign-in error:', error.message);
+        // Handle error
+        //document.getElementById('error-message').innerText = 'Invalid email or password';
+      });
+    });
+  
+    document.getElementById('signUpForm').addEventListener('submit', async function(event) {
+      event.preventDefault();
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('signupEmail').value;
+      const password = document.getElementById('signupPassword').value;
+  fetch('http://localhost:9090/signUp', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ name, email, password })
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Sign-up failed');
+        }
+        return response.text();
+      })
+      .then(data => {
+        // Handle successful sign-up
+        console.log(data);
+        localStorage.setItem('userToken', data.token); // Assuming the API returns a token
+        window.location.href = 'uploadimage.html';
+      })
+      .catch(error => {
+        console.error('Sign-up error:', error.message);
+        // Handle error
+      });
+    });
+    function redirectToUpload(){
+         
+         var email = document.getElementById('email').value;
+       var password = document.getElementById('password').value;
+  if (email.trim() === '' || password.trim() === '') {
+         // Display an error message if any field is empty
+         document.getElementById('error-message').innerText = 'Please fill in all fields.';
+       } else {
+         // Simulating user sign-in and storing a token in localStorage
+         localStorage.setItem('userToken', 'someAuthToken');
+         window.location.href = 'uploadimage1.html'; 
+     }
+  return false;
+  }
+  </script>
+
+  
+  <!-- ------------------------------XRAY---------------------- -->
+  <header class="header2" id="about">
+    <h1>X-ray Information</h1>
+  </header>
+<div class="xray">
+  <section>
+    <h2>X-ray Imaging in Medical diagnostics</h2>
+    <p>Welcome to our comprehensive guide on X-ray imaging, a crucial tool in the field of medical diagnostics.
+         X-rays are a form of electromagnetic radiation with shorter wavelengths than visible light, allowing for detailed imaging of the internal structures of the human body. 
+         This non-invasive technique plays a vital role in diagnosing and monitoring various medical conditions.</p>
+    <!-- <p>In medical settings, X-rays are commonly used to visualize the inside of the body to diagnose and monitor conditions such as fractures, infections, and tumors.</p> -->
+  </section>
+
+  <section>
+    <h2>How X-rays work</h2>
+    <p>X-rays penetrate body tissues and are absorbed in varying amounts by different materials. 
+        Dense structures, such as bones, absorb more X-rays and appear white on the resulting images (radiographs), while softer tissues, like muscles and organs, allow more X-rays to pass through and appear darker.</p>
+    
+  </section>
+
+  <section>
+    <h2>Common Uses of X-rays</h2>
+    <ul class="uses">
+        <li>Fracture Detection: X-rays are frequently used to assess and diagnose fractures in bones. The images help identify the location and extent of the fracture, guiding the appropriate treatment.</li>
+        
+        <li>Pulmonary Imaging: Chest X-rays are valuable for examining the lungs and detecting conditions such as pneumonia, lung cancer, and other respiratory issues.</li>
+        
+        <li>Dental Applications: In dentistry, X-rays assist in visualizing the structure of teeth and jawbones, aiding in the diagnosis of dental problems.</li>
+        
+        <li>Orthopedic Assessments: X-rays play a crucial role in orthopedics, providing detailed images of joints and supporting structures to evaluate conditions like arthritis and joint dislocations.</li>
+    </ul>
+  </section>
+  <section>
+    <h2>Revolutionizing Radiology with Cutting-edge Technology</h2>
+    <p>At InsightXR, we bring innovation to the world of medical diagnostics. Our advanced platform leverages state-of-the-art machine learning (ML) and natural language processing (NLP) techniques to significantly expedite the analysis of X-ray images, providing detailed descriptions in just minutes.</p>
+   <h2>How It Works</h2>
+    <ul>
+        <li>
+            <h2>Image Upload:</h2>
+            <p>Users can easily upload their X-ray images through our user-friendly interface. Simply click the upload button and select the image you want to analyze.</p></li>
+       <li>
+        <h2>Machine Learning Processing:</h2>
+        <P>Once uploaded, our ML algorithms kick into action. These algorithms have been trained on vast datasets to recognize patterns, abnormalities, and intricate details within X-ray images.</P>
+       </li>
+
+       <li>
+        <h2>NLP Integration:</h2>
+        <p>The processed data then undergoes natural language processing (NLP), which translates the complex findings into detailed, easily understandable descriptions. This includes identifying and explaining abnormalities, highlighting areas of concern, and providing insights that are typically derived from extensive radiologist expertise.</p>
+       </li>
+       <li>
+        <h2>Rapid Results:</h2>
+        <p>Unlike traditional methods that may take hours for manual analysis by radiologists, our system delivers results within minutes. This accelerated process allows for quicker decision-making, enabling healthcare professionals to take prompt action.</p>
+       </li>
+    </ul>
+</section>
+      <section>
+        <h2>Key Features</h2>
+       <ul>
+        <li>
+            <h2>Accuracy</h2>
+            <p>Our algorithms have been meticulously trained and fine-tuned to ensure high accuracy in identifying and describing various conditions within X-ray images.</p>
+        </li>
+        <li>
+            <h2>Efficiency</h2>
+            <p>By automating the analysis process, we significantly reduce the time required for diagnosis. This efficiency is particularly valuable in time-sensitive medical scenarios.</p>
+        </li>
+        <li>
+        <h2>Accessibility</h2>
+        <p>Our platform increases accessibility to detailed X-ray analyses, bridging gaps in healthcare services and providing insights to users around the globe.</p>
+    </li>
+    </ul> 
+
+      </section>
+    </div>
+
+
+<!-- --------------------------------ABOUT----------------------------------- -->
+<header class="about">MEET THE TEAM</header>
+<div class="worklist" id="team">
+    <div class="work">
+        <img src="Tejas.jpg" alt="">
+        <div class="layer">
+            <h3>TEJASWI RAI</h3>
+            <p>I ensure intuitive, visually appealing user interfaces and seamlessly integrate functionality by collaborating with the backend team. Additionally, as a coordinator, I lead the team to meet project deadlines and exceed expectations.</p>
+            
+            <div class="icons">
+            <a href="https://www.linkedin.com/in/tejaswi-rai-b40172255/" target="_blank"><i class="fa-brands fa-linkedin  link"></i></a>
+             <a href="https://github.com/TheTejaswiRai" target="_blank"><i class="fa-brands fa-github git"></i></a>
+            </div>
+            </div>
+    </div>
+    <div class="work">
+        <img src="anush.jpg" alt="">
+        <div class="layer">
+            <h3>ANUSH SAXENA</h3>
+            <p>As a backend developer, I thrive on collaborative teamwork to engineer reliable and efficient systems. Working closely with my team, we leverage our collective expertise to tackle complex challenges and deliver high-quality solutions that meet user needs effectively.</p>
+            
+            <div class="icons">
+            <a href=https://www.linkedin.com/in/anush-saxena-582047248 target="_blank"><i class="fa-brands fa-linkedin link"></i></a>
+            <a href=https://github.com/Anush-Saxena target="_blank"><i class="fa-brands fa-github git" target="_blank"></i></a>
+          </div>
+        </div>
+    </div>
+    
+      <div class="work">
+          <img src="mohit.jpeg" alt="">
+          <div class="layer">
+              <h3>MOHIT </h3>
+              <p>As an AI/ML developer, I create algorithms to extract insights from data using cutting-edge techniques, developing intelligent systems to tackle real-world challenges</p>
+              
+              <div class="icons">
+              <a href=" https://thetejaswirai.github.io/Basic-Music-Player/" target="_blank"><i class="fa-brands fa-linkedin link"></i></a>
+              <a href=""><i class="fa-brands fa-github git" target="_blank"></i></a>
+            </div>
+            </div>
+      </div>
+      <div class="work">
+          <img src="komal.jpeg" alt="">
+          <div class="layer">
+              <h3>KOMAL KANWAR</h3>
+              <p>As a frontend developer in a support role, I provide technical assistance to users, ensuring seamless navigation and functionality across web interfaces.</p>
+
+              <div class="icons">
+              <a href=https://www.linkedin.com/in/komal-kanwar-676a6924a target="_blank"><i class="fa-brands fa-linkedin link"></i></a>
+              <a href=https://github.com/kanwarkomal target="_blank"><i class="fa-brands fa-github git "></i></a>
+            </div>
+            </div>
+      </div>
+</div>
+
+<footer><p>©CREATED BY TEAM ALGOWIZ</p></footer>
+</body>
+</html>

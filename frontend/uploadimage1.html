@@ -1,0 +1,83 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="uploadimage1.css">
+    <title>Document</title>
+ </head>
+ <body>
+  <header>
+    <div class="logo">
+        <span class="color1">Insight</span><span class="color2">XR</span>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="properweb.html">Home</a></li>
+            <!-- <li><a href="properweb.html #about">About</a></li>
+            <li><a href="properweb.html #team">Team</a></li> -->
+        </ul>
+    </nav>
+    
+ </header>
+    <!-- -----------------------------------POST IMAGE----------------------------------- -->
+    <div class="pimg">
+      <h2>Upload Image</h2>
+      <input type="file" id="fileInput">
+      <button id="uploadButton">Upload</button>
+      <div id="response"> </div>
+  </div>
+  
+  <script>
+      document.getElementById('uploadButton').addEventListener('click', uploadImage);
+  
+      function uploadImage() {
+          const fileInput = document.getElementById('fileInput');
+          const file = fileInput.files[0];
+  
+          if (!file) {
+              alert('Please select an image');
+              return;
+          }
+  
+          const formData = new FormData();
+          formData.append('file', file);
+          // const fetchData=async()=>{
+          //   const response=await fetch("url");
+          //   const finalRes=await response.json();
+          //   if(finalRes.success){}
+          // }
+          // fetchData()
+          const h=0;
+          fetch(your api here, {
+              method: 'POST',
+              body: formData
+          })
+              .then(response => {
+                  console.log(response)
+                  if (!response.ok) {
+                      throw new Error('Failed to upload image');
+                  }
+                  return response.text();
+              })
+              .then(data => {
+                  console.log(data)
+                  document.getElementById('response').innerText = data.message;
+              })
+              .catch(error => {
+                  console.error('Error:', error);
+                  alert('An error occurred while uploading the image',error);
+              })
+      }
+  </script>
+  
+  
+  <!-- ----------------POST IMAGE HISTORY----------------------------------- -->
+  <div class="history"><h1>Image History</h1>
+      <div id="imageHistory"></div>
+  
+      
+  </div>
+  
+ </body>
+ </html>
